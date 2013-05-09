@@ -1,0 +1,13 @@
+@(users:List[User])
+
+@main("Connected users") {
+
+    @if(users.isEmpty) {
+        <p class="alert alert-danger">No user connected ...</p>
+    }
+    <ul class="unstyled">
+        @for(user <- users.sortWith((u1, u2) => u1.name.compareTo(u2.name) == -1)) {
+            <li><a href="@routes.Application.user(user.id)">@user.name - @user.description</a></li>
+        }
+    </ul>
+}
